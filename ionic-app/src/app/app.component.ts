@@ -26,6 +26,11 @@ export class AppComponent implements OnInit {
       icon: 'contacts'
     },
     {
+      title: 'Live Class',
+      url: '/app/tabs/live',
+      icon: 'contacts'
+    },
+    {
       title: 'Map',
       url: '/app/tabs/map',
       icon: 'map'
