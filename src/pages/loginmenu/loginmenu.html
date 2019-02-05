@@ -1,0 +1,52 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login Loginmenu-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Teacher</strong> Mate
+      </h2>
+    </div>
+
+    <!-- Login form -->
+ 
+  <ion-toolbar padding-left class="loginmenu-user-profile">
+      <ion-grid>
+        <ion-row>
+          <ion-col padding-right col-6>
+              <div class="user-avatar">
+                <img src="../../assets/img/pcs.jpg">
+              </div>
+          </ion-col>
+          <ion-col padding-left col-6>
+             <div class="user-avatar">
+                <img src="../../assets/img/teacher.png">
+              </div>
+           
+          </ion-col>
+        </ion-row>
+
+        <ion-row no-padding class="other-data">
+          <ion-col padding-right  class="column">
+            <button ion-button icon-left small full color="primary" menuClose (click) = "parentaccount()" >
+              <ion-icon name="contact"></ion-icon>
+              Parent
+            </button>
+          </ion-col>
+          <ion-col padding-left class="column">
+            <button ion-button icon-left small full color="primary" menuClose (click)="teacheraccount()">
+              <ion-icon name="log-out"></ion-icon>
+              Teacher
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-toolbar>
+
+    
+  </div>
+</ion-content>
