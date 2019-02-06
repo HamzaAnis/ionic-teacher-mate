@@ -1,18 +1,95 @@
-<!--
-  Generated template for the ParentloginPage page.
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page"  >
+<div class="scroll-content" *ngIf = "emailverified">
+  <div class="login-content" >
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Parent</strong> Login
+      </h2>
+    </div>
 
-  <ion-navbar>
-    <ion-title>parentlogin</ion-title>
-  </ion-navbar>
+    <!-- Login form -->
+    <form class="list-form" >
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" [(ngModel)] = "parent_email" name="email"></ion-input>
+      </ion-item>
 
-</ion-header>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password" [(ngModel)] = "parent_password" name="password"></ion-input>
+      </ion-item>
+    </form>
+
+    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>
+
+    <div>
+      <button ion-button icon-start block color="dark" tappable (click)="login()">
+        <ion-icon name="log-in"></ion-icon>
+        SIGN IN
+      </button>
+
+      <p text-center ion-text color="secondary">Or Sign in with:</p>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-facebook">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-twitter">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-gplus" (click) = "googlelogin()">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
 
 
-<ion-content padding>
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="secondary" tappable (click)="register()">New here? <strong>Sign up</strong></span>
+    </div>
 
+  </div>
+</div>
+<div class="scroll-content" *ngIf = "!emailverified">
+     
+
+
+     <!-- Logo -->
+    
+      
+      <div text-center class="animated fadeInDownverify">
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Verify </strong> your Account
+      </h2>
+      <div text-center margin-top>
+      <span ion-text color="secondary" tappable (click)="sendverification()"> <strong>Send Verfication Link</strong></span>
+    </div>
+    <div [ngStyle]="{'padding-top':'30px'}">
+          <span padding-top ion-text color="primary" tappable (click)="verified()"> <strong>Verified?</strong></span>
+    </div>
+    </div>
+ 
+
+</div>
 </ion-content>

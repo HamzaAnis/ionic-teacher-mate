@@ -16,7 +16,10 @@ import { LoaderserviceProvider } from '../../providers/loaderservice/loaderservi
 })
 export class SignupModalPage {
 
+  person: string = '';
   constructor(public loaderservice:LoaderserviceProvider, public alertCtrl :AlertController, public afauth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+    this.person = this.navParams.get('person');
+
   }
   
   name: string = '';

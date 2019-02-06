@@ -98,7 +98,8 @@ if (this.afauth.auth.currentUser != null || this.afauth.auth.currentUser != unde
   }
 
   register(){
-    var modalPage = this.modalctrl.create('SignupModalPage');
+    var person = 'Teacher';
+    var modalPage = this.modalctrl.create('SignupModalPage',{person: person});
     modalPage.present();
   }
   

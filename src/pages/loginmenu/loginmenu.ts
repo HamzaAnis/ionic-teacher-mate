@@ -34,9 +34,7 @@ export class LoginmenuPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginmenuPage');
   }
-  parentaccount(){
 
-  }
   teacheraccount(){
  //   this.navCtrl.setRoot(HomePage);
  //   this.navCtrl.pop();
@@ -46,6 +44,7 @@ export class LoginmenuPage {
     //   const startIndex = this.navCtrl.getActive().index - 1;
     //   this.navCtrl.remove(startIndex, 1);
     // });
+
     var modalPage = this.modalCtrl.create('TeacherloginPage');
     modalPage.onDidDismiss(data=>{
       if (data == true)
@@ -57,5 +56,15 @@ export class LoginmenuPage {
     modalPage.present();
   }
 
-
+  parentaccount(){
+    var modalPage = this.modalCtrl.create('ParentloginPage');
+    modalPage.onDidDismiss(data=>{
+      if (data == true)
+      {
+        console.log(data+" login menu ")
+        this.navCtrl.popToRoot();
+      }
+    });
+    modalPage.present();
+  }
 }
