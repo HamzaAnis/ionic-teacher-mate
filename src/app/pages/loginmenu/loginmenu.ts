@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { HomePage } from '../home/home';
+// import { HomePage } from '../home/home';
 import { ModalController } from 'ionic-angular';
 
 /**
@@ -18,8 +18,8 @@ import { ModalController } from 'ionic-angular';
 })
 export class LoginmenuPage {
 
-  constructor(public afAuth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams,public modalCtrl : ModalController) {
- 
+  constructor(public afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+
     console.log('in loginmenu');
     // this.afAuth.auth.onAuthStateChanged(user => {
     //   if (user!=null){
@@ -28,40 +28,38 @@ export class LoginmenuPage {
     //     this.navCtrl.push(HomePage);
     //   }
     // });
-   
-   }
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginmenuPage');
   }
 
-  teacheraccount(){
- //   this.navCtrl.setRoot(HomePage);
- //   this.navCtrl.pop();
-   // this.navCtrl.push('TeacherloginPage');
-  //  this.navCtrl.push('TeacherloginPage')
+  teacheraccount() {
+    //   this.navCtrl.setRoot(HomePage);
+    //   this.navCtrl.pop();
+    // this.navCtrl.push('TeacherloginPage');
+    //  this.navCtrl.push('TeacherloginPage')
     // .then(() => {
     //   const startIndex = this.navCtrl.getActive().index - 1;
     //   this.navCtrl.remove(startIndex, 1);
     // });
 
     var modalPage = this.modalCtrl.create('TeacherloginPage');
-    modalPage.onDidDismiss(data=>{
-      if (data == true)
-      {
-        console.log(data+" login menu ")
+    modalPage.onDidDismiss(data => {
+      if (data == true) {
+        console.log(data + " login menu ")
         this.navCtrl.popToRoot();
       }
     });
     modalPage.present();
   }
 
-  parentaccount(){
+  parentaccount() {
     var modalPage = this.modalCtrl.create('ParentloginPage');
-    modalPage.onDidDismiss(data=>{
-      if (data == true)
-      {
-        console.log(data+" login menu ")
+    modalPage.onDidDismiss(data => {
+      if (data == true) {
+        console.log(data + " login menu ")
         this.navCtrl.popToRoot();
       }
     });
