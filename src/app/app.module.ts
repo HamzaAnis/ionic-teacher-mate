@@ -15,6 +15,7 @@ import { LoaderserviceProvider } from '../providers/loaderservice/loaderservice'
 import { LoginserviceProvider } from '../providers/loginservice/loginservice';
 import { HomeServiceProvider } from '../providers/home-service/home-service';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
+import { SignupServiceProvider } from '../providers/signup-service/signup-service';
 
 // import { TeacherloginPage } from '../pages/teacherlogin/teacherlogin';
 // import { ParentloginPage } from '../pages/parentlogin/parentlogin';
@@ -56,7 +57,8 @@ export const firebaseConfig = {
     LoaderserviceProvider,
     LoginserviceProvider,
     HomeServiceProvider,
-    ChatServiceProvider
+    ChatServiceProvider,
+    SignupServiceProvider
   ]
 })
 export class AppModule {}

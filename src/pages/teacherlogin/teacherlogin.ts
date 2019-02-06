@@ -100,6 +100,13 @@ if (this.afauth.auth.currentUser != null || this.afauth.auth.currentUser != unde
   register(){
     var person = 'Teacher';
     var modalPage = this.modalctrl.create('SignupModalPage',{person: person});
+    modalPage.onDidDismiss(data=>{
+      if (data == true)
+      {
+        console.log(data+" teachersingup ")
+        this.viewCtrl.dismiss(true);
+      }
+    });
     modalPage.present();
   }
   

@@ -9,8 +9,7 @@ import {
 } from "angularfire2/firestore";
 import { LoaderserviceProvider } from '../../providers/loaderservice/loaderservice';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { removeSummaryDuplicates } from '@angular/compiler';
-import { empty } from 'rxjs';
+
 
 /*
   Generated class for the LoginserviceProvider provider.

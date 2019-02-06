@@ -95,6 +95,13 @@ googlelogin(){
 register(){
  var person = 'Parent';
  var modalPage = this.modalctrl.create('SignupModalPage',{person: person});
+ modalPage.onDidDismiss(data=>{
+  if (data == true)
+  {
+    console.log(data+" parentsignup ")
+    this.viewCtrl.dismiss(true);
+  }
+});
  modalPage.present();
 }
 
