@@ -33,7 +33,10 @@ const routes: Routes = [
     loadChildren: './pages/tutorial/tutorial.module#TutorialModule',
     canLoad: [CheckTutorial]
   },
-  { path: 'live', loadChildren: './pages/live/live.module#LivePageModule' }
+  {
+    path: 'live',
+    loadChildren: './pages/live/live.module#LivePageModule'
+  }
 
 ];
 
