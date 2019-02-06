@@ -891,7 +891,17 @@
     }
   }
   
-  .fadeInDown {
+  .fadeInDownverify {
     animation-name: fadeInDown;
+    .logo {
+         
+         
+      width: 60px;
+      height: 60px;
+      margin: 20px auto 0;
+      border-radius: 10%;
+      background: url("../assets/img/ionic3-ico.png") no-repeat;
+      background-size: 100%;
+    }
   }
   

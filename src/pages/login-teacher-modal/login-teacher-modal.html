@@ -1,6 +1,6 @@
 <!-- -->
-<ion-content padding class="animated fadeIn login auth-page"  >
-<div class="scroll-content" *ngIf = "emailverified">
+<ion-content padding class="animated fadeIn login auth-page" >
+<div class="scroll-content">
   <div class="login-content" >
 
     <!-- Logo -->
@@ -12,7 +12,7 @@
     </div>
 
     <!-- Login form -->
-    <form class="list-form" >
+    <form class="list-form">
       <ion-item>
         <ion-label floating>
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
@@ -69,27 +69,5 @@
     </div>
 
   </div>
-</div>
-<div class="scroll-content" *ngIf = "!emailverified">
-     
-
-
-     <!-- Logo -->
-    
-      
-      <div text-center class="animated fadeInDownverify">
-      <div class="logo"></div>
-      <h2 ion-text class="text-primary">
-        <strong>Verify </strong> your Account
-      </h2>
-      <div text-center margin-top>
-      <span ion-text color="secondary" tappable (click)="sendverification()"> <strong>Send Verfication Link</strong></span>
     </div>
-    <div [ngStyle]="{'padding-top':'30px'}">
-          <span padding-top ion-text color="primary" tappable (click)="verified()"> <strong>Verified?</strong></span>
-    </div>
-    </div>
- 
-
-</div>
 </ion-content>

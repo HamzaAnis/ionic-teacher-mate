@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, ViewController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoaderserviceProvider } from '../../providers/loaderservice/loaderservice';
  import { HomePage } from '../home/home';
@@ -21,9 +21,9 @@ export class TeacherloginPage {
    
      teacher_email: string= "";
      teacher_password: string= "";
- 
+     emailverified: boolean = false;
 
-  constructor(public loginprovider: LoginserviceProvider, public alertCtrl: AlertController, public loader: LoaderserviceProvider, public navCtrl: NavController, public navParams: NavParams, public afauth: AngularFireAuth) {
+  constructor(public modalctrl: ModalController, public viewCtrl:ViewController, public loginprovider: LoginserviceProvider, public alertCtrl: AlertController, public loader: LoaderserviceProvider, public navCtrl: NavController, public navParams: NavParams, public afauth: AngularFireAuth) {
    
     // this.afauth.auth.onAuthStateChanged(user => {
     //   if (user){
@@ -33,12 +33,20 @@ export class TeacherloginPage {
     //      this.navCtrl.push(HomePage);
     //   }
     // });
-
+//    console.log(this.afauth.auth.currentUser)
+if (this.afauth.auth.currentUser != null || this.afauth.auth.currentUser != undefined){
+    if (this.afauth.auth.currentUser.emailVerified ){
+      this.emailverified = true;
+    }
+  }else {
+    this.emailverified = true;
   }
+} 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeacherloginPage');
   }
+
   presentAlert(alerttitle, alertsub) {
     let alert = this.alertCtrl.create({
       title: alerttitle,
@@ -57,12 +65,18 @@ export class TeacherloginPage {
     // this.loginprovider.findteacher(tcredts);
     this.afauth.auth.signInWithEmailAndPassword(tcredts.email,tcredts.password).then(res=> {
       
-      let childnavs = this.navCtrl.getViews();
-      for (let i=0;i<childnavs.length;i++){
-      console.log(childnavs[i].component.name+" "+childnavs[i]);
+      // let childnavs = this.navCtrl.getViews();
+      // for (let i=0;i<childnavs.length;i++){
+      // console.log(childnavs[i].component.name+" "+childnavs[i]);
       
+      // }
+      console.log(this.afauth.auth.currentUser);
+      if (this.afauth.auth.currentUser!= undefined && this.afauth.auth.currentUser!= null && this.afauth.auth.currentUser.emailVerified){
+      this.viewCtrl.dismiss(true);
+      }else{
+        this.emailverified = false;
       }
-      this.navCtrl.popToRoot();
+     // this.navCtrl.popToRoot();
      // this.navCtrl.push(HomePage);
     
       // this.navCtrl.push(HomePage)
@@ -80,6 +94,28 @@ export class TeacherloginPage {
       email: this.teacher_email,
       password : this.teacher_password
     }
+    
+  }
 
+  register(){
+    var modalPage = this.modalctrl.create('SignupModalPage');
+    modalPage.present();
+  }
+  
+  sendverification(){
+    this.afauth.auth.currentUser.sendEmailVerification().then(()=>{
+      this.presentAlert('Verification Link Send ','Successfully');
+    }).catch(err=>{
+      this.presentAlert('Verificaton Email Sending ',' Failed ');
+    });
+  }
+
+  verified(){
+    if (this.afauth.auth.currentUser.emailVerified ){
+      this.emailverified = true;
+      this.navCtrl.popToRoot();
+    }else{
+      this.presentAlert('Email verfication ',' Failed ');
+    }
   }
 }

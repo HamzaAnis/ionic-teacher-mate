@@ -16,7 +16,6 @@ import { LoginserviceProvider } from '../providers/loginservice/loginservice';
 import { HomeServiceProvider } from '../providers/home-service/home-service';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 
-
 // import { TeacherloginPage } from '../pages/teacherlogin/teacherlogin';
 // import { ParentloginPage } from '../pages/parentlogin/parentlogin';
 
@@ -40,7 +39,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence({experimentalTabSynchronization: true}),
+  //  AngularFirestoreModule.enablePersistence({experimentalTabSynchronization: true}),
+    AngularFirestoreModule.enablePersistence(),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

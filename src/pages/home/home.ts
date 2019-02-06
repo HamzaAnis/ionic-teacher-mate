@@ -20,21 +20,25 @@ export class HomePage {
     date: new Date().toISOString()
   }
 
-  constructor(public homeservice: HomeServiceProvider,public afAuth:AngularFireAuth, public alertctrl:AlertController ,public toastctrl:ToastController, public modalctrl: ModalController, public platform: Platform, public actionsheetCtrl: ActionSheetController, private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController) {
+  constructor(public homeservice: HomeServiceProvider, public afAuth:AngularFireAuth, public alertctrl:AlertController ,public toastctrl:ToastController, public modalctrl: ModalController, public platform: Platform, public actionsheetCtrl: ActionSheetController, private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController) {
     let childnavs = this.nav.getViews();
+    console.log(childnavs);
       for (let i=0;i<childnavs.length;i++){
       console.log(childnavs[i].component.name+" "+childnavs[i]);
       }
   this.afAuth.auth.onAuthStateChanged(user => {
     
     console.log(user);
-    if (!user){
+    console.log(childnavs);
+    if (user == undefined){
       console.log('go to login');
       this.nav.push('LoginmenuPage')
-       .then(() => {
-        const startIndex = this.nav.getActive().index - 1;
-        this.nav.remove(startIndex, 1);
-      }); 
+      //  .then(() => {
+      //   const startIndex = this.nav.getActive().index - 1;
+      //   this.nav.remove(startIndex, 1);
+      // }); 
+    // var modalpage = this.modalctrl.create('LoginmenuPage');
+    //  modalpage.present();
     }
   });
     

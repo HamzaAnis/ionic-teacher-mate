@@ -35,7 +35,7 @@ export class HomeServiceProvider {
     //   content: 'loading'
     // });
   this.afAuth.auth.onAuthStateChanged(user=>{
-if (user!=null){
+if ( user!=undefined){
   this.teacherclassroom = [];
     this.classroomdoc = this.afs.collection('classroom'
     , ref=> {
