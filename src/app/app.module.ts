@@ -48,7 +48,6 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage
-
   ],
   providers: [
     StatusBar,
