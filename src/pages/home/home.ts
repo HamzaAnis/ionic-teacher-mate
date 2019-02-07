@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ModalController ,NavController, PopoverController, ToastController, AlertController} from "ionic-angular";
+import { ModalController, NavController, PopoverController, ToastController, AlertController } from "ionic-angular";
 import { Storage } from '@ionic/storage';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -14,36 +14,36 @@ import { HomeServiceProvider } from '../../providers/home-service/home-service';
 })
 export class HomePage {
 
-   // search condition
-   public search = {
+  // search condition
+  public search = {
     name: "name ",
     date: new Date().toISOString()
   }
 
-  constructor(public homeservice: HomeServiceProvider, public afAuth:AngularFireAuth, public alertctrl:AlertController ,public toastctrl:ToastController, public modalctrl: ModalController, public platform: Platform, public actionsheetCtrl: ActionSheetController, private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController) {
+  constructor(public homeservice: HomeServiceProvider, public afAuth: AngularFireAuth, public alertctrl: AlertController, public toastctrl: ToastController, public modalctrl: ModalController, public platform: Platform, public actionsheetCtrl: ActionSheetController, private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController) {
     let childnavs = this.nav.getViews();
     console.log(childnavs);
-      for (let i=0;i<childnavs.length;i++){
-      console.log(childnavs[i].component.name+" "+childnavs[i]);
-      }
-  this.afAuth.auth.onAuthStateChanged(user => {
-    
-    console.log(user);
-    console.log(childnavs);
-    if (user == undefined){
-      console.log('go to login');
-      this.nav.push('LoginmenuPage')
-      //  .then(() => {
-      //   const startIndex = this.nav.getActive().index - 1;
-      //   this.nav.remove(startIndex, 1);
-      // }); 
-    // var modalpage = this.modalctrl.create('LoginmenuPage');
-    //  modalpage.present();
+    for (let i = 0; i < childnavs.length; i++) {
+      console.log(childnavs[i].component.name + " " + childnavs[i]);
     }
-  });
-    
+    this.afAuth.auth.onAuthStateChanged(user => {
+
+      console.log(user);
+      console.log(childnavs);
+      if (user == undefined) {
+        console.log('go to login');
+        this.nav.push('LoginmenuPage')
+        //  .then(() => {
+        //   const startIndex = this.nav.getActive().index - 1;
+        //   this.nav.remove(startIndex, 1);
+        // }); 
+        // var modalpage = this.modalctrl.create('LoginmenuPage');
+        //  modalpage.present();
+      }
+    });
+
   }
- 
+
   ionViewWillEnter() {
     // this.search.pickup = "Rio de Janeiro, Brazil";
     // this.search.dropOff = "Same as pickup";
@@ -60,17 +60,17 @@ export class HomePage {
 
   // go to result page
   doSearch() {
-  //  this.nav.push(TripsPage);
+    //  this.nav.push(TripsPage);
   }
 
   // choose place
   choosePlace(from) {
-  //  this.nav.push(SearchLocationPage, from);
+    //  this.nav.push(SearchLocationPage, from);
   }
 
   // to go account page
   goToAccount() {
-  //  this.nav.push(SettingsPage);
+    //  this.nav.push(SettingsPage);
   }
 
   presentNotifications(myEvent) {
@@ -82,7 +82,7 @@ export class HomePage {
   }
 
 
-  viewClassroom(classname: any, classteacher: any){
+  viewClassroom(classname: any, classteacher: any) {
     this.nav.push('TimelinePage')
   }
 
@@ -122,39 +122,39 @@ export class HomePage {
             let classname = '';
             let subject = '';
             let section = '';
-            if (data.classname == ''){
+            if (data.classname == '') {
               classname = data.classname;
-            }else{
+            } else {
               classname = data.classname;
             }
 
-            if (data.subject == ''){
+            if (data.subject == '') {
               subject = data.subject;
-            }else{
+            } else {
               subject = data.subject;
             }
-            
-            if (data.section == ''){
+
+            if (data.section == '') {
               section = data.section;
-            }else{
+            } else {
               section = data.section;
             }
-            
+
 
             let teacherclass = {
               email: this.afAuth.auth.currentUser.email,
               classname: classname,
-               section: section,
-               subject: subject,
-               teachername: this.afAuth.auth.currentUser.email
+              section: section,
+              subject: subject,
+              teachername: this.afAuth.auth.currentUser.email
             };
-            this.homeservice.addclassroom(teacherclass).then(res=>{
-            this.nav.push('ChatPage');
-            }).catch(err=>{
+            this.homeservice.addclassroom(teacherclass).then(res => {
+              this.nav.push('ChatPage');
+            }).catch(err => {
 
             });
 
-            this.presentAlert('Error','Cannot Create Classroom');   
+            this.presentAlert('Error', 'Cannot Create Classroom');
           }
         }
       ]
