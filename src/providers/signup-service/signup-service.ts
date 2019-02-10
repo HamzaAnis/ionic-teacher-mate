@@ -17,6 +17,7 @@ import { LoaderserviceProvider } from '../loaderservice/loaderservice';
 @Injectable()
 export class SignupServiceProvider {
   parentDoc: AngularFirestoreDocument<any>;
+  teacherDoc: AngularFirestoreDocument<any>;
   constructor(public afs: AngularFirestore, public loaderservice: LoaderserviceProvider) {
     console.log('Hello SignupServiceProvider Provider');
 
@@ -43,7 +44,7 @@ export class SignupServiceProvider {
               } else {
                 this.afs.doc('/parentclassroom/' + parentemail).set({
                   classroom: '',
-                  parentname: ''
+                  parentname: name
                 }).then(res => {
                   this.loaderservice.loading.dismiss();
                   resolve('done');
@@ -55,7 +56,8 @@ export class SignupServiceProvider {
               }
             }).catch(err => {
               this.afs.doc('/parentclassroom/' + parentemail).set({
-                classroom: ''
+                classroom: '',
+                parentname: name
               }).then(res => {
                 this.loaderservice.loading.dismiss();
                 resolve('done');
@@ -63,16 +65,98 @@ export class SignupServiceProvider {
                 this.loaderservice.loading.dismiss();
                 reject(error);
               });
+              this.loaderservice.loading.present().then(res => {
+                this.parentDoc = this.afs.doc('/parentclassroom/' + parentemail);
+                this.parentDoc.ref.get().then(
+                  res => {
+                    if (res.exists) {
+                      this.loaderservice.loading.dismiss();
+                      resolve('done');
+                    } else {
+                      this.afs.doc('/parentclassroom/' + parentemail).set({
+                        classroom: '',
+                        parentname: ''
+                      }).then(res => {
+                        this.loaderservice.loading.dismiss();
+                        resolve('done');
+                      }).catch(error => {
+                        this.loaderservice.loading.dismiss();
+                        reject(error);
+                      });
 
-            })
+                    }
+                  }).catch(err => {
+                    this.afs.doc('/parentclassroom/' + parentemail).set({
+                      classroom: ''
+                    }).then(res => {
+                      this.loaderservice.loading.dismiss();
+                      resolve('done');
+                    }).catch(error => {
+                      this.loaderservice.loading.dismiss();
+                      reject(error);
+                    });
 
+                  })
+
+              });
+
+            }, 1000);
         });
+        return promise;
+      }
 
-      }, 1000);
-    });
-    return promise;
-  }
 
+teachersignup(teacheremail: string, parentname: string){
+          var promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+              this.loaderservice.loading = this.loaderservice.loadingCtrl.create({
+
+                content: `
+         <div class="custom-spinner-container">
+           <div class="custom-spinner-box"> Creating Account </div>
+         </div>`,
+
+              });
+              this.loaderservice.loading.present().then(res => {
+                this.teacherDoc = this.afs.doc('/teaherclassroom/' + teacheremail);
+                this.teacherDoc.ref.get().then(
+                  res => {
+                    if (res.exists) {
+                      this.loaderservice.loading.dismiss();
+                      resolve('done');
+                    } else {
+                      this.afs.doc('/teaherclassroom/' + teacheremail).set({
+                        classroom: '',
+                        teachername: name
+                      }).then(res => {
+                        this.loaderservice.loading.dismiss();
+                        resolve('done');
+                      }).catch(error => {
+                        this.loaderservice.loading.dismiss();
+                        reject(error);
+                      });
+
+                    }
+                  }).catch(err => {
+                    this.afs.doc('/parentclassroom/' + teacheremail).set({
+                      classroom: '',
+                      teachername: name
+                    }).then(res => {
+                      this.loaderservice.loading.dismiss();
+                      resolve('done');
+                    }).catch(error => {
+                      this.loaderservice.loading.dismiss();
+                      reject(error);
+                    });
+
+                  })
+
+              });
+
+            }, 1000);
+          });
+          return promise;
+        }
 }
 
 
